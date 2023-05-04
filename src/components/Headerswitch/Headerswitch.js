@@ -21,7 +21,7 @@ const Headerswitch = () => {
         href="https://github.com/Aryan130902" 
         target="_blank"
         rel="noopener noreferrer"
-        className="lg:mr-32 lg:ml-5 mr-16 md:ml-0 font-primaryfont hover:scale-110 hover:shadow rounded-3xl decoration-2 underline-offset-4 duration-300 p-2 px-8 hover:shadow-secondary hover:font-semibold border-2 border-secondary ">
+        className="lg:mr-32 lg:ml-5 md:mr-16 md:ml-0 font-primaryfont hover:scale-110 hover:shadow rounded-3xl decoration-2 underline-offset-4 duration-300 p-2 px-8 hover:shadow-secondary hover:font-semibold border-2 border-secondary ">
         Resume
     </a>
     <a 
