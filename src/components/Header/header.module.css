@@ -1,0 +1,47 @@
+.section {
+    @apply 
+    text-gray-600 ;
+}
+
+.inner_section{
+    @apply 
+    container 
+    max-w-full 
+    mx-auto 
+    flex 
+    px-5
+    pt-24 
+    pb-8 
+    flex-col 
+    items-center 
+    md:pt-0
+    md:flex-row; 
+}
+
+.noobda{
+    @apply 
+    text-secondary 
+    font-primaryfont;
+}
+
+.hero_image{
+    @apply 
+    object-cover 
+    object-center rounded;
+}
+
+.hero_body{
+    @apply 
+    lg:flex-grow 
+    lg:pl-24 
+    lg:pr-24
+    md:w-1/2  
+    md:pr-16
+    md:items-start 
+    md:text-left 
+    mb-16 
+    md:mb-0 
+    flex flex-col  
+    items-center 
+    text-center;
+}

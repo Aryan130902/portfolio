@@ -20,10 +20,9 @@ const PageNotFound = () => {
         <div className="rounded-lg h-[19rem] overflow-overlay">
           <img alt="content" className="object-cover object-center h-full w-full" src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"/>
         </div>
-        
         <p className="leading-relaxed text-xl font-primary ">The page you are looking for is under <span className='text-secondary'>development</span>!</p>
         <button onClick={() => home()} className="flex mx-auto mt-6 text-white bg-secondary border-0 py-2 px-5 focus:outline-none hover:bg-gradient-to-r from-secondary to-secondarylight rounded font-primaryfont" 
-        >Home</button>
+        >Back</button>
       </div>
     </div>
   </div>
