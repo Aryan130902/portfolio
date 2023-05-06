@@ -1,0 +1,106 @@
+import Card1 from "./Card1";
+import Card2 from "./Card2";
+import Card3 from "./Card3";
+import React, { useRef, useEffect } from 'react';
+import { useSpring, animated } from '@react-spring/web';
+
+const Card = () => {
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+
+  const [springProps1, setSpringProps1] = useSpring(() => ({
+    opacity: 0,
+    transform: 'translateY(50px)',
+  }));
+
+  const [springProps2, setSpringProps2] = useSpring(() => ({
+    opacity: 0,
+    transform: 'translateY(50px)',
+  }));
+
+  const [springProps3, setSpringProps3] = useSpring(() => ({
+    opacity: 0,
+    transform: 'translateY(50px)',
+  }));
+
+  useEffect(() => {
+    const handleScroll = () => {
+        if (ref1.current) {
+          const top = ref1.current.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (top <= windowHeight / 2) {
+            setSpringProps1({
+              opacity: 1,
+              transform: 'translateY(0px)',
+              config: { duration: 500 },
+            });
+            window.removeEventListener('scroll', handleScroll);
+          }
+        }
+      };
+      
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+        if (ref2.current) {
+          const top = ref2.current.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (top <= windowHeight / 2) {
+            setSpringProps2({
+              opacity: 1,
+              transform: 'translateY(0px)',
+              config: { duration: 500 },
+            });
+            window.removeEventListener('scroll', handleScroll);
+          }
+        }
+      };      
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+        if (ref3.current) {
+          const top = ref3.current.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (top <= windowHeight / 2) {
+            setSpringProps3({
+              opacity: 1,
+              transform: 'translateY(0px)',
+              config: { duration: 500 },
+            });
+            window.removeEventListener('scroll', handleScroll);
+          }
+        }
+      };      
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <>
+      <section ref={ref1} className="my-10">
+        <animated.div style={springProps1}>
+          <Card1/>
+        </animated.div>
+      </section>
+      <section ref={ref2} className="my-10">
+        <animated.div style={springProps2}>
+          <Card2/>
+        </animated.div>
+      </section>
+      <section ref={ref3} className="my-10">
+        <animated.div style={springProps3}>
+          <Card3/>
+        </animated.div>
+      </section>
+    </>
+  );
+};
+
+export default Card;

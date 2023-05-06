@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
     extend: {
@@ -29,15 +30,30 @@ module.exports = {
 
     
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
  
   animation: {
-    bounce: 'bounce 0.5s ease-in-out',
+    bounce: 'bounce 1s ease-in-out',
   },
   keyframes: {
     bounce: {
-      '0%, 100%': { transform: 'translateY(0)' },
-      '50%': { transform: 'translateY(-10px)' },
+      '20%, 50%, 80%, to': {
+        transform: 'scale(1, 1)',
+      },
+      '40%': {
+        transform: 'scale(1.75, 0.65)',
+      },
+      '45%': {
+        transform: 'scale(1.75, 0.65)',
+      },
+      '70%': {
+        transform: 'scale(1.25, 0.75)',
+      },
+      '90%': {
+        transform: 'scale(1.15, 0.85)',
+      },
     },
   },
 }
