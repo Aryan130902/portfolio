@@ -1,7 +1,7 @@
 
 import './App.css';
 import PageNotFound from './components/PageNotFound'
-import Main from './components/Main';
+import Main from './components/Navbar/Main';
 import {
   BrowserRouter,
   Route,

@@ -1,52 +1,163 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import { BsCalendar2 } from 'react-icons/bs';
+import styles from './TimeLine.module.css';
 
+export function useHorizontalScroll() {
+  const elRef = useRef();
+  useEffect(() => {
+    const el = elRef.current;
+    if (el) {
+      let isScrolling = false;
+      let startX = 0;
+      let scrollLeft = 0;
 
-const TimeLine = () => {
-  return (
-    <div>
-        <ol class="items-center sm:flex">
-            <li class="relative mb-6 sm:mb-0">
-                <div class="flex items-center">
-                    <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                        <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-                </div>
-                <div class="mt-3 sm:pr-8">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Flowbite Library v1.0.0</h3>
-                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on December 2, 2021</time>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web components and interactive elements.</p>
-                </div>
-            </li>
-            <li class="relative mb-6 sm:mb-0">
-                <div class="flex items-center">
-                    <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                        <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-                </div>
-                <div class="mt-3 sm:pr-8">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Flowbite Library v1.2.0</h3>
-                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on December 23, 2021</time>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web components and interactive elements.</p>
-                </div>
-            </li>
-            <li class="relative mb-6 sm:mb-0">
-                <div class="flex items-center">
-                    <div class="z-10 flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full ring-0 ring-white dark:bg-blue-900 sm:ring-8 dark:ring-gray-900 shrink-0">
-                        <svg aria-hidden="true" class="w-3 h-3 text-blue-800 dark:text-blue-300" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path></svg>
-                    </div>
-                    <div class="hidden sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-                </div>
-                <div class="mt-3 sm:pr-8">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Flowbite Library v1.3.0</h3>
-                    <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Released on January 5, 2022</time>
-                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">Get started with dozens of web components and interactive elements.</p>
-                </div>
-            </li>
-        </ol>
-    </div>
-  )
+      const onWheel = e => {
+        if (e.deltaY === 0) return;
+
+        if (el.scrollLeft === 0 && e.deltaY < 0) {
+          // Scroll the page up
+          window.scrollTo({
+            top: window.pageYOffset + e.deltaY,
+            behavior: 'smooth'
+          });
+        } else if (el.scrollLeft === el.scrollWidth - el.clientWidth && e.deltaY > 0) {
+          // Scroll the page down
+          window.scrollTo({
+            top: window.pageYOffset + e.deltaY,
+            behavior: 'smooth'
+          });
+        } else {
+          // Scroll horizontally
+          e.preventDefault();
+          el.scrollTo({
+            left: el.scrollLeft + e.deltaY,
+            behavior: 'smooth'
+          });
+        }
+      };
+
+      const handleTouchStart = (event) => {
+        isScrolling = true;
+        startX = event.touches[0].clientX;
+        scrollLeft = el.scrollLeft;
+      };
+
+      const handleTouchMove = (event) => {
+        if (!isScrolling) return;
+        const x = event.touches[0].clientX;
+        const walk = (x - startX) * 3; // Adjust the scrolling speed here
+        el.scrollLeft = scrollLeft - walk;
+      };
+
+      const handleTouchEnd = () => {
+        isScrolling = false;
+      };
+
+      el.addEventListener('touchstart', handleTouchStart, { passive: true });
+      el.addEventListener('touchmove', handleTouchMove, { passive: true });
+      el.addEventListener('touchend', handleTouchEnd);
+      el.addEventListener('wheel', onWheel);
+
+      return () =>{
+        el.removeEventListener('touchstart', handleTouchStart);
+        el.removeEventListener('touchmove', handleTouchMove);
+        el.removeEventListener('touchend', handleTouchEnd);
+        el.removeEventListener('wheel', onWheel);
+      }
+    }
+  }, []);
+
+  return elRef;
 }
 
-export default TimeLine
+const TimeLine = () => {
+  const scrollRef = useHorizontalScroll();
+
+  return (
+    <div className="container py-24" ref={scrollRef} style={{ overflow: 'hidden' }}>
+      <div>
+        <h1 className="lg:ml-8 mt-12 font-primaryfont lg:text-5xl font-medium text-gray-900 text-center md:text-left text-4xl md:mx-auto">
+          Have a look at <br />
+          <span className="text-secondary font-primary">My Journey!</span>
+        </h1>
+      </div>
+      <div style={{ whiteSpace: 'nowrap' }}>
+        <ol className="flex whitespace-nowrap">
+        <li className="relative mb-6 sm:mb-0 m-2">
+            <div className="flex items-center">
+              <div className={styles.butt}>
+                <BsCalendar2 />
+              </div>
+              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+            </div>
+            <div className="mt-3 sm:pr-8">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">St. Xaviers Sr. Sec. CO-ED School, Bhopal</h3>
+              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Mar 2006 - May 2020</time>
+              <p className="text-base font-normal text-gray-500 dark:text-gray-400">Class 12th PCM <br></br> Percentage: 91.4%</p>
+            </div>
+          </li>
+          <li className="relative mb-6 sm:mb-0 m-2">
+            <div className="flex items-center">
+              <div className={styles.butt}>
+                <BsCalendar2 />
+              </div>
+              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+            </div>
+            <div className="mt-3 sm:pr-8">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">Shri G.S. Institute of Technology and Science, Indore</h3>
+              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Oct 2020 - Mar 2024</time>
+              <p className="text-base font-normal text-gray-500 dark:text-gray-400">3rd year, Information Technology <br></br> CGPA:8.31/10</p>
+            </div>
+          </li>
+          <li className="relative mb-6 sm:mb-0 m-2">
+            <div className="flex items-center">
+              <div className={styles.butt}>
+                <BsCalendar2 />
+              </div>
+              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+            </div>
+            <div className="mt-3 sm:pr-8">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">Art For Charity</h3>
+              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Dec 2020 - present</time>
+              <p className="text-base font-normal text-gray-500 dark:text-gray-400">• Working as a coordinator <br></br>• Spreading smiles through Art</p>
+            </div>
+          </li>
+          <li className="relative mb-6 sm:mb-0 m-2">
+            <div className="flex items-center">
+              <div className={styles.butt}>
+                <BsCalendar2 />
+              </div>
+              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+            </div>
+            <div className="mt-3 sm:pr-8">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">E-Cell, SGSITS </h3>
+              <h6 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">• Coordinator </h6>
+              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jun 2020 - Jun 2021</time>
+              <h6 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">• Head Of Design </h6>
+              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jun 2021 - present</time>
+              <p className="text-base font-normal text-gray-500 dark:text-gray-400">• Mentored and led a design team of 10+ members. <br></br>• Member of organizing team for
+                Aarambh and E - Summit'23.</p>
+            </div>
+          </li>
+          <li className="relative mb-6 sm:mb-0 m-2">
+            <div className="flex items-center">
+              <div className={styles.butt}>
+                <BsCalendar2 />
+              </div>
+              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
+            </div>
+            <div className="mt-3 sm:pr-8">
+              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">Infigon Futures </h3>
+              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jun 2021 - Sept 2021</time>
+              <p className="text-base font-normal text-gray-500 dark:text-gray-400 w-8">• Worked on the UI/UX of the app and website.<br></br>
+                Designed multiple components and features of<br></br>
+                the app using figma.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  );
+};
+
+export default TimeLine;
