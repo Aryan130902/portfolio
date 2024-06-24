@@ -3,6 +3,9 @@ import { Tilt } from "react-tilt";
 import {RxOpenInNewWindow} from "react-icons/rx"
 
 const Card1 = () => {
+
+  const skills = ["React.js", "Material UI" , "FourSquare API"];
+
   return (
     <section className="text-gray-600 body-font lg:mx-24 md:mx-10">
     <div className="container mx-auto flex px-5 py-2 pt-16 md:py-8 md:flex-row flex-col items-center ">
@@ -15,9 +18,9 @@ const Card1 = () => {
                 A Web app helpful for individuals who are searching for nearby hospitals and want to compare different options based on their needs and preferences.
             </p>
             <div className="flex flex-wrap">
-                <li className="font-primaryfont font-light text-secondary mr-8">React.js</li>
-                <li className="font-primaryfont font-light text-secondary mr-8">Material UI</li>
-                <li className="font-primaryfont font-light text-secondary mr-8">FourSquare API</li>
+              {skills.map((skill) => (
+                <li key = {skill.id} className="font-primaryfont font-light text-secondary mr-8">{skill}</li>
+              ))}
             </div>
             <div className='pt-2 flex flex-r'>
             <a href='https://find-hospitals-hackitout.netlify.app/' className='bg-gray-800 inline-flex p-2 rounded-lg text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white'>

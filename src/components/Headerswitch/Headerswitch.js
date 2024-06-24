@@ -20,28 +20,24 @@ const Headerswitch = () => {
     <a 
         href="https://drive.google.com/file/d/1EuIqWvT2IWV11g6RUMqn2kDYa4s0E1yh/view?usp=sharing" 
         target="_blank"
-        rel="noopener noreferrer"
         className="lg:mr-32 lg:ml-5 md:mr-16 md:ml-0 font-primaryfont hover:scale-110 hover:shadow rounded-3xl decoration-2 underline-offset-4 duration-300 p-2 px-8 hover:shadow-secondary hover:font-semibold border-2 border-secondary ">
         Resume
     </a>
     <a 
         href="https://github.com/Aryan130902" 
         target="_blank"
-        rel="noopener noreferrer"
         className={styles.butt}>
         <SiGithub size={24} /> 
     </a>
     <a 
         href="https://www.linkedin.com/in/aryan-tiwari-368050200/" 
         target="_blank"
-        rel="noopener noreferrer"
         className={styles.butt}>
         <TfiLinkedin size ={24} /> 
     </a>
     <a 
-        href="https://leetcode.com/aryan_t_iwari/" 
+        href="/notexist" 
         target="_blank"
-        rel="noopener noreferrer"
         className={styles.butt}>
         <SiLeetcode size={24} /> 
     </a>

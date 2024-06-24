@@ -4,6 +4,7 @@ import styles from './TimeLine.module.css';
 
 export function useHorizontalScroll() {
   const elRef = useRef();
+
   useEffect(() => {
     const el = elRef.current;
     if (el) {
@@ -17,13 +18,13 @@ export function useHorizontalScroll() {
         if (el.scrollLeft === 0 && e.deltaY < 0) {
           // Scroll the page up
           window.scrollTo({
-            top: window.pageYOffset + e.deltaY,
+            top: window.scrollY + e.deltaY,
             behavior: 'smooth'
           });
         } else if (el.scrollLeft === el.scrollWidth - el.clientWidth && e.deltaY > 0) {
           // Scroll the page down
           window.scrollTo({
-            top: window.pageYOffset + e.deltaY,
+            top: window.scrollY + e.deltaY,
             behavior: 'smooth'
           });
         } else {
@@ -33,7 +34,7 @@ export function useHorizontalScroll() {
             left: el.scrollLeft + e.deltaY,
             behavior: 'smooth'
           });
-        }
+        }        
       };
 
       const handleTouchStart = (event) => {
@@ -45,7 +46,7 @@ export function useHorizontalScroll() {
       const handleTouchMove = (event) => {
         if (!isScrolling) return;
         const x = event.touches[0].clientX;
-        const walk = (x - startX) * 3; // Adjust the scrolling speed here
+        const walk = (x - startX) * 20;
         el.scrollLeft = scrollLeft - walk;
       };
 

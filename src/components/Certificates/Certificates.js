@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Certificates = () => {
+
+  const certificates = ["./infigon.jpeg", "./E-summit 21.png", "./Tally.png"];
+
   return (
     <div>
       <section className="text-gray-600 body-font">
@@ -15,24 +18,17 @@ const Certificates = () => {
           </div>
           <div className='container'>
           <div className="flex flex-wrap -m-4">
-            <div className="lg:w-1/3 sm:w-1/2 p-4">
-              <div className="flex relative pb-2">
-                <img
-                  alt="gallery"
-                  className=" inset-0 w-full object-cover object-center"
-                  src="./infigon.jpeg"
-                />
-              </div>
-            </div>
-            <div className="lg:w-1/3 sm:w-1/2 p-4">
-              <div className="flex relative pb-2">
-                <img
-                  alt="gallery"
-                  className=" inset-0 w-full object-cover object-center"
-                  src="./E-summit 21.png"
-                />
-              </div>
-            </div>
+          {certificates.map((certificate) => (
+            <div key={certificate.id} className="lg:w-1/3 sm:w-1/2 p-4">
+          <div className="flex relative pb-2">
+            <img
+              alt="gallery"
+              className=" inset-0 object-cover object-center"
+              src={certificate}
+            />
+          </div>
+        </div>
+        ))}
             </div>
           </div>
         </div>
