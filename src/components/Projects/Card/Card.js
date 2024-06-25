@@ -1,6 +1,7 @@
 import Card1 from "./Card1";
 import Card2 from "./Card2";
 import Card3 from "./Card3";
+import Card4 from "./Card4";
 import React, { useRef, useEffect } from 'react';
 import { useSpring, animated } from '@react-spring/web';
 
@@ -8,6 +9,7 @@ const Card = () => {
   const ref1 = useRef(null);
   const ref2 = useRef(null);
   const ref3 = useRef(null);
+  const ref4 = useRef(null);
 
   const [springProps1, setSpringProps1] = useSpring(() => ({
     opacity: 0,
@@ -20,6 +22,11 @@ const Card = () => {
   }));
 
   const [springProps3, setSpringProps3] = useSpring(() => ({
+    opacity: 0,
+    transform: 'translateY(50px)',
+  }));
+
+  const [springProps4, setSpringProps4] = useSpring(() => ({
     opacity: 0,
     transform: 'translateY(50px)',
   }));
@@ -82,6 +89,24 @@ const Card = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+        if (ref4.current) {
+          const top = ref4.current.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+          if (top <= windowHeight / 2) {
+            setSpringProps4({
+              opacity: 1,
+              transform: 'translateY(0px)',
+              config: { duration: 500 },
+            });
+            window.removeEventListener('scroll', handleScroll);
+          }
+        }
+      };      
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   return (
     <>
     <div className="container">
@@ -103,6 +128,11 @@ const Card = () => {
       <section ref={ref3} className="my-10">
         <animated.div style={springProps3}>
           <Card3/>
+        </animated.div>
+      </section>
+      <section ref={ref4} className="my-10">
+        <animated.div style={springProps4}>
+          <Card4/>
         </animated.div>
       </section>
       </div>

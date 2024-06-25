@@ -42,22 +42,39 @@
         },
         {
             "Title": "Infigon Futures",
-            "Duration": "Jun 2021 - Sept 2021",
+            
             "Description": [
                 "Worked on the UI/UX of the app and website.",
                 "Designed multiple components and features of the app using Figma."
             ],
-            "Promotion": []
+            "Promotion": [
+                {"Title": "Intern", "Duration": "Jun 2021 - Sept 2021"}
+            ]
         },
         {
             "Title": "Tally Solution",
-            "Duration": "Oct 2023 - Jan 2024",
+            
             "Description": [
-                "Developed an application to streamline the organization of hackathons.",
+                "Developed an application to streamline the conduct of hackathons.",
                 "Designed the database using PostgreSQL",
-                "Implemented the application using React.js, Node.js, Prisma, and Tailwind CSS"
+                "Tech used React.js, Node.js, Prisma, and Tailwind CSS"
             ],
             "Promotion": [
+                {"Title": "Intern", "Duration": "Oct 2023 - Jan 2024"}
+            ]
+        },
+        {
+            "Title": "Deloitte",
+            "Duration": "Jan 2024 - Present",
+            "Description": [
+                "Developed new features and integrated APIs to generate performance metrics in CSV format",
+                "Leveraged React and .NET Core to build scalable and efficient solutions",
+                "Implement custom APIs in .NET for automatic hire details generation."
+            ],
+            "Promotion": [
+                {"Title": "Intern", "Duration": "Jan 2024 - Apr 2024"},
+                {"Title": "Analyst", "Duration": "Jun 2024 - present"}
             ]
         }
+
     ];

@@ -81,10 +81,10 @@ const TimeLine = () => {
       </div>
       <div style={{ whiteSpace: 'nowrap' }}>
         <ol className="flex whitespace-nowrap">
-        <div className='flex space-x-4 overflow-x-aut0'>
+        <div className='flex space-x-4 overflow-x'>
             {cardobj.map((detail, index) => (
                 detail.Title ? (
-                    <li key={index} className="relative mb-6 sm:mb-0 m-2">
+                    <li key={index} className="relative mb-6 sm:mb-0 m-2 mx-8">
                         <div className="flex items-center">
                             <div className={styles.butt}>
                                 <BsCalendar2 />
