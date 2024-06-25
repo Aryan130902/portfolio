@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { BsCalendar2 } from 'react-icons/bs';
 import styles from './TimeLine.module.css';
+import { cardobj } from './Card';
 
 export function useHorizontalScroll() {
   const elRef = useRef();
@@ -14,27 +15,24 @@ export function useHorizontalScroll() {
 
       const onWheel = e => {
         if (e.deltaY === 0) return;
-
+        e.preventDefault()
         if (el.scrollLeft === 0 && e.deltaY < 0) {
           // Scroll the page up
           window.scrollTo({
             top: window.scrollY + e.deltaY,
-            behavior: 'smooth'
           });
         } else if (el.scrollLeft === el.scrollWidth - el.clientWidth && e.deltaY > 0) {
           // Scroll the page down
           window.scrollTo({
             top: window.scrollY + e.deltaY,
-            behavior: 'smooth'
           });
         } else {
           // Scroll horizontally
           e.preventDefault();
           el.scrollTo({
             left: el.scrollLeft + e.deltaY,
-            behavior: 'smooth'
           });
-        }        
+        }       
       };
 
       const handleTouchStart = (event) => {
@@ -73,7 +71,6 @@ export function useHorizontalScroll() {
 
 const TimeLine = () => {
   const scrollRef = useHorizontalScroll();
-
   return (
     <div className="container py-24" ref={scrollRef} style={{ overflow: 'hidden' }}>
       <div>
@@ -84,81 +81,49 @@ const TimeLine = () => {
       </div>
       <div style={{ whiteSpace: 'nowrap' }}>
         <ol className="flex whitespace-nowrap">
-        <li className="relative mb-6 sm:mb-0 m-2">
-            <div className="flex items-center">
-              <div className={styles.butt}>
-                <BsCalendar2 />
-              </div>
-              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-            </div>
-            <div className="mt-3 sm:pr-8">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">St. Xaviers Sr. Sec. CO-ED School, Bhopal</h3>
-              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Mar 2006 - May 2020</time>
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400">Class 12th PCM <br></br> Percentage: 91.4%</p>
-            </div>
-          </li>
-          <li className="relative mb-6 sm:mb-0 m-2">
-            <div className="flex items-center">
-              <div className={styles.butt}>
-                <BsCalendar2 />
-              </div>
-              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-            </div>
-            <div className="mt-3 sm:pr-8">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">Shri G.S. Institute of Technology and Science, Indore</h3>
-              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Oct 2020 - Mar 2024</time>
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400">3rd year, Information Technology <br></br> CGPA:8.31/10</p>
-            </div>
-          </li>
-          <li className="relative mb-6 sm:mb-0 m-2">
-            <div className="flex items-center">
-              <div className={styles.butt}>
-                <BsCalendar2 />
-              </div>
-              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-            </div>
-            <div className="mt-3 sm:pr-8">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">Art For Charity</h3>
-              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Dec 2020 - present</time>
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400">• Working as a coordinator <br></br>• Spreading smiles through Art</p>
-            </div>
-          </li>
-          <li className="relative mb-6 sm:mb-0 m-2">
-            <div className="flex items-center">
-              <div className={styles.butt}>
-                <BsCalendar2 />
-              </div>
-              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-            </div>
-            <div className="mt-3 sm:pr-8">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">E-Cell, SGSITS </h3>
-              <h6 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">• Coordinator </h6>
-              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jun 2020 - Jun 2021</time>
-              <h6 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">• Head Of Design </h6>
-              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jun 2021 - present</time>
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400">• Mentored and led a design team of 10+ members. <br></br>• Member of organizing team for
-                Aarambh and E - Summit'23.</p>
-            </div>
-          </li>
-          <li className="relative mb-6 sm:mb-0 m-2">
-            <div className="flex items-center">
-              <div className={styles.butt}>
-                <BsCalendar2 />
-              </div>
-              <div className="sm:flex w-full bg-gray-200 h-0.5 dark:bg-gray-700"></div>
-            </div>
-            <div className="mt-3 sm:pr-8">
-              <h3 className="text-lg font-medium text-gray-900 dark:text-white font-primaryfont">Infigon Futures </h3>
-              <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Jun 2021 - Sept 2021</time>
-              <p className="text-base font-normal text-gray-500 dark:text-gray-400 w-8">• Worked on the UI/UX of the app and website.<br></br>
-                Designed multiple components and features of<br></br>
-                the app using figma.</p>
-            </div>
-          </li>
+        <div className='flex space-x-4 overflow-x-aut0'>
+            {cardobj.map((detail, index) => (
+                detail.Title ? (
+                    <li key={index} className="relative mb-6 sm:mb-0 m-2">
+                        <div className="flex items-center">
+                            <div className={styles.butt}>
+                                <BsCalendar2 />
+                            </div>
+                            <div className="sm:flex w-full bg-gray-200 h-0.5 -ml-2 -mr-12"></div>
+                        </div>
+                        <div className="mt-3 sm:pr-8">
+                            <h3 className="text-lg font-medium text-gray-900">
+                                {detail.Title}
+                            </h3>
+                            <time className="block mb-2 text-sm font-normal text-gray-400">
+                                {detail.Duration}
+                            </time>
+                            {detail.Promotion.map((promo, promoIndex) => (
+                                <div key={promoIndex}>
+                                    <h6 className="text-lg font-medium text-gray-900 font-primaryfont">
+                                        • {promo.Title}
+                                    </h6>
+                                    <time className="block mb-2 text-sm font-normal text-gray-400">
+                                        {promo.Duration}
+                                    </time>
+                                </div>
+                            ))}
+                            <ul className="max-w-md break-words mr-4">
+                                {detail.Description.map((desc, descIndex) => (
+                                    <li key={descIndex} className="text-base font-normal text-gray-500">
+                                        • {desc}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </li>
+                ) : null
+            ))}
+        </div>
         </ol>
       </div>
     </div>
-  );
+  ); 
 };
 
 export default TimeLine;
